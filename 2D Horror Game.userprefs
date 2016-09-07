@@ -1,0 +1,17 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shaders\FlashLight.shader">
+    <Files>
+      <File FileName="Assets\Scripts\NetworkPlayer.cs" Line="49" Column="3" />
+      <File FileName="Assets\Scripts\LightingTestScript.cs" Line="12" Column="2" />
+      <File FileName="Assets\Scripts\Character.cs" Line="41" Column="31" />
+      <File FileName="Assets\Shaders\FlashLight.shader" Line="32" Column="3" />
+      <File FileName="Assets\Scripts\LightingCamera.cs" Line="12" Column="12" />
+      <File FileName="Assets\Scripts\RoomGenerator.cs" Line="23" Column="37" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
