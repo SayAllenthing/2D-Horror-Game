@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
 
 public class LightingCamera : MonoBehaviour 
 {
@@ -25,6 +26,9 @@ public class LightingCamera : MonoBehaviour
 	void Update () 
 	{
 		CreateTexture();
+
+		if(Input.GetKeyDown(KeyCode.P))
+			TakeScreen();
 	}
 
 	void CreateTexture()
@@ -32,7 +36,7 @@ public class LightingCamera : MonoBehaviour
 
 
 		camera.targetTexture = rt;
-		camera.Render();
+		//camera.Render();
 
 		RenderTexture.active = rt;
 
@@ -50,5 +54,13 @@ public class LightingCamera : MonoBehaviour
 		//Debug.Log("Screenshot did");
 
 		rend.material.SetTexture("_MainTex", tex);
+	}
+
+	void TakeScreen()
+	{
+		byte[] bytes = tex.EncodeToPNG();
+		File.WriteAllBytes(Application.dataPath + "/../SavedScreen.png", bytes);
+
+		Debug.Log("Screenshot did");
 	}
 }

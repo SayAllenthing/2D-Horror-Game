@@ -51,10 +51,11 @@
      <Compile Include="Assets\Scripts\NetworkPlayer.cs" />
      <Compile Include="Assets\Scripts\RoomGenerator.cs" />
      <Compile Include="Assets\Scripts\Triangulator.cs" />
-     <None Include="Assets\Shaders\Shader_Specular.shader" />
-     <None Include="Assets\Shaders\TextureAlphaShader.shader" />
-     <None Include="Assets\Shaders\SpriteLit.shader" />
+     <None Include="Assets\Shaders\NewUnlitShader.shader" />
+     <None Include="Assets\Shaders\Shader_FlatColour.shader" />
+     <None Include="Assets\Shaders\LightFalloff.shader" />
      <None Include="Assets\Shaders\FlashLight.shader" />
+     <None Include="Assets\Shaders\LightFalloff_pixel.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

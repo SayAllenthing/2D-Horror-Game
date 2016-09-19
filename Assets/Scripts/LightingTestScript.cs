@@ -9,10 +9,10 @@ public class LightingTestScript : MonoBehaviour {
 
 	public Transform target;
 
+	public MeshRenderer renderer;
 
-
-	public int ConeLength = 3;
-	public int ConeWidth = 2;
+	public float ConeLength = 3;
+	public float ConeWidth = 2;
 	public int Raycasts = 5;
 
 	// Use this for initialization
@@ -34,6 +34,7 @@ public class LightingTestScript : MonoBehaviour {
 	void CreatePolygon()
 	{
 		Vector3 pos = Vector3.zero;
+
 
 		Vector2[] vertices2D = new Vector2[Raycasts+1];
 
@@ -59,21 +60,21 @@ public class LightingTestScript : MonoBehaviour {
 			Vector2 ray = new Vector2(transform.position.x, transform.position.y);
 			RaycastHit2D hit;
 
-			Debug.DrawRay(ray, dir, Color.green);
+			//Debug.DrawRay(ray, dir, Color.green);
 
 			hit = Physics2D.Raycast(ray, dir, dir.magnitude);
 
+			Vector2 point;
+
 			if(hit.collider != null)
 			{				
-				vertices2D[i] = new Vector2(hit.point.x - transform.position.x, hit.point.y - transform.position.y);
+				point = new Vector2(hit.point.x - transform.position.x, hit.point.y - transform.position.y);
 			}
 			else
 			{
-				//Debug.Log(dir.x + " " + transform.position.x);
-
-
-				vertices2D[i] = new Vector2(dir.x, dir.y);
+				point = new Vector2(dir.x, dir.y);
 			}
+			vertices2D[i] = point;
 		}
 
 		vertices2D[Raycasts] = new Vector2(pos.x,pos.y);
@@ -97,6 +98,8 @@ public class LightingTestScript : MonoBehaviour {
 		//gameObject.AddComponent(typeof(MeshRenderer));
 		//MeshFilter filter = gameObject.AddComponent(typeof(MeshFilter)) as MeshFilter;
 		gameObject.GetComponent<MeshFilter>().mesh = msh;
+
+		renderer.material.SetVector("_Source", new Vector4(transform.position.x, transform.position.y, 0, 1));
 	}
 
 

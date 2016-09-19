@@ -45,7 +45,7 @@ public class NetworkPlayer : NetworkBehaviour
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () 
+	void Update () 
 	{
 		if(isLocalPlayer)
 			SendPosition();
@@ -71,9 +71,9 @@ public class NetworkPlayer : NetworkBehaviour
 	{
 		if(!isLocalPlayer)
 		{
-			transform.position = Vector3.Lerp(transform.position, SyncPos, 15 * Time.deltaTime);
+			transform.position = Vector3.Lerp(transform.position, SyncPos, 5* Time.deltaTime);
 
-			MyCharacter.SetLookDirection(SyncLook);
+			MyCharacter.SetLookDirection(Vector2.Lerp(MyCharacter.LastAngle, SyncLook, 5 * Time.deltaTime));
 
 		}
 	}

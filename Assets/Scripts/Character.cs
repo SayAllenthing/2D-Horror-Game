@@ -11,6 +11,8 @@ public class Character : MonoBehaviour {
 
 	Rigidbody2D rigidbody;
 
+	public float Speed = 250;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -34,14 +36,16 @@ public class Character : MonoBehaviour {
 		Vector2 WantMove = Vector2.zero;
 
 		WantMove = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-		WantMove = WantMove.normalized;
 
-		if(WantMove.magnitude > 0.1f)
+
+
+		if(WantMove.magnitude > 0.4f)
 		{		
+			WantMove = WantMove.normalized;
 			SetLookDirection(WantMove);
 		}
 
-		rigidbody.velocity = WantMove * 5;
+		rigidbody.velocity = WantMove * Speed * Time.deltaTime;
 	}
 
 	public void SetLookDirection(Vector2 look)

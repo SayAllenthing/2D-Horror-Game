@@ -10,7 +10,7 @@ SubShader {
 	LOD 200
 
 CGPROGRAM
-#pragma surface surf Lambert alpha:fade
+#pragma surface surf Lambert alpha:blend
 
 sampler2D _MainTex;
 fixed4 _Color;
@@ -23,20 +23,10 @@ struct Input {
 void surf (Input IN, inout SurfaceOutput o) {
 	fixed4 c = tex2D(_MainTex, IN.uv_MainTex);
 
-	if(c.a > 0.5)
-	{
-		o.Albedo = _Color.rgb;
-		o.Alpha = 0.2;
-	}
-	else
-	{		
-		o.Albedo = float3(0,0,0);
-		o.Alpha = _Darkness;
-	}
+	float diff = length(c.rgb - float3(1,1,1));
 
-
-
-
+	o.Albedo = _Color.rgb * clamp(diff, 0, 0.4);
+	o.Alpha = clamp(_Darkness - (diff), 0.5, _Darkness);
 }
 ENDCG
 }
