@@ -15,10 +15,14 @@ public class LightingTestScript : MonoBehaviour {
 	public float ConeWidth = 2;
 	public int Raycasts = 5;
 
+	LayerMask mask;
+
 	// Use this for initialization
 	void Start () 
 	{
-		
+
+		mask = ~((1 << 9) | (1 << 8));
+
 		msh = new Mesh();
 	}
 	
@@ -62,7 +66,7 @@ public class LightingTestScript : MonoBehaviour {
 
 			//Debug.DrawRay(ray, dir, Color.green);
 
-			hit = Physics2D.Raycast(ray, dir, dir.magnitude);
+			hit = Physics2D.Raycast(ray, dir, dir.magnitude, mask);
 
 			Vector2 point;
 

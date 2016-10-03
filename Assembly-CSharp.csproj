@@ -46,10 +46,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Character.cs" />
+     <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\LightingCamera.cs" />
      <Compile Include="Assets\Scripts\LightingTestScript.cs" />
      <Compile Include="Assets\Scripts\NetworkPlayer.cs" />
      <Compile Include="Assets\Scripts\RoomGenerator.cs" />
+     <Compile Include="Assets\Scripts\Tilemap.cs" />
      <Compile Include="Assets\Scripts\Triangulator.cs" />
      <None Include="Assets\Shaders\NewUnlitShader.shader" />
      <None Include="Assets\Shaders\Shader_FlatColour.shader" />
@@ -61,6 +63,9 @@
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="LitJSON">
+ <HintPath>C:/Users/Allen/Desktop/Allen's Stuff/GitHub/2D Horror Game/Assets/Plugins/LitJSON.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

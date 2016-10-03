@@ -1,15 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shaders\LightFalloff_pixel.shader">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\RoomGenerator.cs">
     <Files>
-      <File FileName="Assets\Shaders\FlashLight.shader" Line="13" Column="41" />
-      <File FileName="Assets\Scripts\Character.cs" Line="40" Column="3" />
-      <File FileName="Assets\Scripts\NetworkPlayer.cs" Line="76" Column="82" />
-      <File FileName="Assets\Scripts\LightingTestScript.cs" Line="102" Column="3" />
-      <File FileName="Assets\Scripts\LightingCamera.cs" Line="41" Column="29" />
-      <File FileName="Assets\Scripts\RoomGenerator.cs" Line="1" Column="1" />
-      <File FileName="Assets\Shaders\LightFalloff.shader" Line="33" Column="51" />
-      <File FileName="Assets\Shaders\LightFalloff_pixel.shader" Line="7" Column="33" />
+      <File FileName="Assets\Scripts\Tilemap.cs" Line="71" Column="35" />
+      <File FileName="Assets\Scripts\RoomGenerator.cs" Line="49" Column="38" />
+      <File FileName="Assets\Shaders\FlashLight.shader" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Character.cs" Line="74" Column="3" />
+      <File FileName="Assets\Scripts\NetworkPlayer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\LightingTestScript.cs" Line="69" Column="57" />
+      <File FileName="Assets\Scripts\LightingCamera.cs" Line="56" Column="45" />
+      <File FileName="Assets\Shaders\LightFalloff.shader" Line="1" Column="1" />
+      <File FileName="Assets\Shaders\LightFalloff_pixel.shader" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
