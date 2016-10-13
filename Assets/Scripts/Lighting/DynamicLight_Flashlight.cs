@@ -2,13 +2,10 @@
 using System.Collections;
 using System.IO;
 
-public class LightingTestScript : MonoBehaviour {
+public class DynamicLight_Flashlight : MonoBehaviour {
 
 
 	Mesh msh;
-
-	public Transform target;
-
 	public MeshRenderer renderer;
 
 	public float ConeLength = 3;
@@ -20,25 +17,20 @@ public class LightingTestScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-
 		mask = ~((1 << 9) | (1 << 8));
-
 		msh = new Mesh();
 	}
 	
 	// Update is called once per frame
 	void Update () 
-	{
-		//Debug.DrawLine(transform.position, Vector3.right * 5, Color.red, 0.1f, false);
-
-					
-		CreatePolygon();
+	{		
+		if(renderer.enabled)
+			CreatePolygon();
 	}
 
 	void CreatePolygon()
 	{
 		Vector3 pos = Vector3.zero;
-
 
 		Vector2[] vertices2D = new Vector2[Raycasts+1];
 

@@ -7,9 +7,10 @@ public class Enemy : MonoBehaviour
 	Rigidbody2D rigidbody;
 	Transform sprite;
 
-
 	public float speed = 150;
 	public GameObject target = null;
+
+
 
 	// Use this for initialization
 	void Start () 
@@ -18,6 +19,8 @@ public class Enemy : MonoBehaviour
 		anim = sprite.GetComponent<Animator>();
 
 		rigidbody = GetComponent<Rigidbody2D>();
+
+		AINetwork.Instance.AddActor(transform);
 	}
 	
 	// Update is called once per frame
@@ -35,12 +38,23 @@ public class Enemy : MonoBehaviour
 
 	void ChaseTarget()
 	{
-		Vector3 wantMove = (target.transform.position - transform.position).normalized;
-		rigidbody.velocity = new Vector2(wantMove.x, wantMove.y) * speed * Time.deltaTime;
+		AINetwork.Instance.FindPath(transform.position, target.transform.position);
 
+		if(AINetwork.Instance.ThePath != null)
+		{
+			Node n = AINetwork.Instance.ThePath[0];
+
+			Vector3 wantMove = (n.Position - transform.position).normalized;
+
+			Debug.Log(wantMove + " " + n.Position);
+
+			rigidbody.velocity =  new Vector2(wantMove.x, wantMove.y) * speed * Time.deltaTime;
+		}
 		anim.SetBool("IsRunning", rigidbody.velocity.magnitude > 0.5f);
 
 		sprite.localScale = new Vector3(rigidbody.velocity.x > 0 ? -1 : 1, 1, 1);
+
+
 	}
 
 	void LookForTarget()

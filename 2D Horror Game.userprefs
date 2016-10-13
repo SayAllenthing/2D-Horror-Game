@@ -1,17 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\RoomGenerator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy.cs">
     <Files>
-      <File FileName="Assets\Scripts\Tilemap.cs" Line="71" Column="35" />
-      <File FileName="Assets\Scripts\RoomGenerator.cs" Line="49" Column="38" />
-      <File FileName="Assets\Shaders\FlashLight.shader" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Character.cs" Line="74" Column="3" />
-      <File FileName="Assets\Scripts\NetworkPlayer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LightingTestScript.cs" Line="69" Column="57" />
-      <File FileName="Assets\Scripts\LightingCamera.cs" Line="56" Column="45" />
-      <File FileName="Assets\Shaders\LightFalloff.shader" Line="1" Column="1" />
-      <File FileName="Assets\Shaders\LightFalloff_pixel.shader" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AINetwork.cs" Line="214" Column="6" />
+      <File FileName="Assets\Scripts\Node.cs" Line="12" Column="18" />
+      <File FileName="Assets\Scripts\RoomGenerator.cs" Line="7" Column="26" />
+      <File FileName="Assets\Scripts\Lighting\MuzzleLight.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Lighting\StaticLight.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Lighting\DynamicLight_Flashlight.cs" Line="1" Column="1" />
+      <File FileName="Assets\Shaders\Light2D_Pixel.shader" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Character.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Debug\DebugManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Tilemap.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="47" Column="55" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -45,19 +45,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\AINetwork.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
+     <Compile Include="Assets\Scripts\Debug\DebugManager.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
-     <Compile Include="Assets\Scripts\LightingCamera.cs" />
-     <Compile Include="Assets\Scripts\LightingTestScript.cs" />
+     <Compile Include="Assets\Scripts\Lighting\DynamicLight_Flashlight.cs" />
+     <Compile Include="Assets\Scripts\Lighting\LightingCamera.cs" />
+     <Compile Include="Assets\Scripts\Lighting\MuzzleLight.cs" />
+     <Compile Include="Assets\Scripts\Lighting\StaticLight.cs" />
      <Compile Include="Assets\Scripts\NetworkPlayer.cs" />
+     <Compile Include="Assets\Scripts\Node.cs" />
      <Compile Include="Assets\Scripts\RoomGenerator.cs" />
      <Compile Include="Assets\Scripts\Tilemap.cs" />
      <Compile Include="Assets\Scripts\Triangulator.cs" />
      <None Include="Assets\Shaders\NewUnlitShader.shader" />
      <None Include="Assets\Shaders\Shader_FlatColour.shader" />
-     <None Include="Assets\Shaders\LightFalloff.shader" />
-     <None Include="Assets\Shaders\FlashLight.shader" />
-     <None Include="Assets\Shaders\LightFalloff_pixel.shader" />
+     <None Include="Assets\Shaders\Light2D.shader" />
+     <None Include="Assets\Shaders\LightingRenderer.shader" />
+     <None Include="Assets\Shaders\Light2D_Pixel.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

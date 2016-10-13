@@ -1,11 +1,11 @@
-﻿Shader "Custom/LightFalloff_pixel"
+﻿Shader "Custom/Light2D_pixel"
 {
 	Properties
 	{
 		_MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
 		_Source ("Source", vector) = (0,0,0,0)
 		_LoY ("Opaque Y", float) = -10
-		_HiY ("Transparent Y", float) = 5
+		_HiY ("Distance", float) = 5
 	}
 	SubShader
 	{

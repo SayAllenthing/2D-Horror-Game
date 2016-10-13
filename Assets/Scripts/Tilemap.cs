@@ -76,9 +76,9 @@ public class Tilemap : MonoBehaviour {
 			else
 				x = i % unitsPerRow * 32;
 
-			Debug.Log("Creating Sprite at " + "X:" + x + ". Y:" + y);
+			//Debug.Log("Creating Sprite at " + "X:" + x + ". Y:" + y);
 
-			td.sprite = Sprite.Create(SpriteMap, new Rect(x, mapHeight - y ,32,32), new Vector2(0,0), 32);
+			td.sprite = Sprite.Create(SpriteMap, new Rect(x, mapHeight - y ,32,32), new Vector2(0.5f,0f), 32);
 
 			list.Add(td.sprite);
 

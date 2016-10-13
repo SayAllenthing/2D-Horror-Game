@@ -13,6 +13,9 @@ public class Character : MonoBehaviour {
 
 	public float Speed = 250;
 
+	public DynamicLight_Flashlight FlashLight;
+	public MuzzleLight MuzzleLight;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -22,6 +25,10 @@ public class Character : MonoBehaviour {
 	public void InitLocalPlayer()
 	{
 		bIsLocal = true;
+
+		DebugManager.Instance.Character = transform;
+
+		AINetwork.Instance.AddActor(transform);
 	}
 	
 	// Update is called once per frame
@@ -29,6 +36,7 @@ public class Character : MonoBehaviour {
 	{
 		if(bIsLocal)
 			HandleInput();
+
 	}
 
 	void HandleInput()
@@ -49,10 +57,17 @@ public class Character : MonoBehaviour {
 		{
 			HandleFire();
 		}
+
+		if(Input.GetKeyDown(KeyCode.F))
+		{
+			FlashLight.renderer.enabled = !FlashLight.renderer.enabled;
+		}
 	}
 
 	void HandleFire()
 	{
+		MuzzleLight.Refresh();
+
 		RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 5f, Vector2.zero);
 
 		for(int i = 0; i < hits.Length; i++)
