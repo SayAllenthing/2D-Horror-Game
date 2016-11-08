@@ -1,18 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Generation\Tilemap.cs">
     <Files>
-      <File FileName="Assets\Scripts\AINetwork.cs" Line="214" Column="6" />
-      <File FileName="Assets\Scripts\Node.cs" Line="12" Column="18" />
-      <File FileName="Assets\Scripts\RoomGenerator.cs" Line="7" Column="26" />
-      <File FileName="Assets\Scripts\Lighting\MuzzleLight.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Lighting\StaticLight.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Lighting\DynamicLight_Flashlight.cs" Line="1" Column="1" />
-      <File FileName="Assets\Shaders\Light2D_Pixel.shader" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Character.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Debug\DebugManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Tilemap.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="47" Column="55" />
+      <File FileName="Assets\Scripts\Networking\LobbyManagerWrapper.cs" Line="33" Column="22" />
+      <File FileName="Assets\Scripts\Networking\LobbyPlayer.cs" Line="7" Column="2" />
+      <File FileName="Assets\Scripts\MonsterTitleScreen.cs" Line="53" Column="4" />
+      <File FileName="Assets\Scripts\Menu\MainMenuManager.cs" Line="55" Column="20" />
+      <File FileName="Assets\Scripts\Lighting\StaticLight.cs" Line="13" Column="27" />
+      <File FileName="Assets\Scripts\Generation\Tilemap.cs" Line="42" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

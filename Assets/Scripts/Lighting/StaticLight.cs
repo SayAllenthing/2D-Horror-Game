@@ -10,6 +10,8 @@ public class StaticLight : MonoBehaviour {
 
 	public float Brightness = 4;
 
+	public int RayCasts = 180;
+
 	void Start () 
 	{
 		mask = ~((1 << 9) | (1 << 8));
@@ -37,12 +39,12 @@ public class StaticLight : MonoBehaviour {
 
 		Vector3 vector = Vector3.right;
 
-		float angle = -10;
+		float angle = -(360 / RayCasts);
 
 		Vector3 pos = Vector3.zero;
-		Vector2[] vertices2D = new Vector2[36];
+		Vector2[] vertices2D = new Vector2[RayCasts];
 
-		for(int i = 0; i < 36; i++)
+		for(int i = 0; i < RayCasts; i++)
 		{
 			Vector2 ray = new Vector2(transform.position.x, transform.position.y);
 			RaycastHit2D hit;

@@ -29,6 +29,8 @@ public class Character : MonoBehaviour {
 		DebugManager.Instance.Character = transform;
 
 		AINetwork.Instance.AddActor(transform);
+
+		transform.position = new Vector3(2,2,0);
 	}
 	
 	// Update is called once per frame

@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 Shader "Custom/Light2D" {
 Properties {	
 	_MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
@@ -27,7 +29,7 @@ struct Input {
 
 void myvert (inout appdata_full v, out Input data) {
        // convert the vertex to world space: 
-       float4 worldV = mul (_Object2World, v.vertex);
+       float4 worldV = mul (unity_ObjectToWorld, v.vertex);
        // calculate alpha according to the world Y coordinate:
 
        float len = length(worldV.xy - _Source.xy);
