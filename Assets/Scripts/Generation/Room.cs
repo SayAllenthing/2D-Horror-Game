@@ -224,7 +224,7 @@ public class Room
 
 		int[] coords = GetProperCoords(DoorX, DoorY);
 
-		Debug.Log("Creating Door from " + pivot + " To " + b.pivot + " at " + coords[0] + ", " + coords[1] + " / " + DoorX + ", " + DoorY);
+		//Debug.Log("Creating Door from " + pivot + " To " + b.pivot + " at " + coords[0] + ", " + coords[1] + " / " + DoorX + ", " + DoorY);
 
 		MapData[coords[0], coords[1]] = tile;
 

@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 
 		rigidbody = GetComponent<Rigidbody2D>();
 
-		AINetwork.Instance.AddActor(transform);
+		GameMapData.Instance.AddActor(transform);
 	}
 	
 	// Update is called once per frame
@@ -38,11 +38,11 @@ public class Enemy : MonoBehaviour
 
 	void ChaseTarget()
 	{
-		AINetwork.Instance.FindPath(transform.position, target.transform.position);
+		GameMapData.Instance.FindPath(transform.position, target.transform.position);
 
-		if(AINetwork.Instance.ThePath != null)
+		if(GameMapData.Instance.ThePath != null)
 		{
-			Node n = AINetwork.Instance.ThePath[0];
+			Node n = GameMapData.Instance.ThePath[0];
 
 			Vector3 wantMove = (n.Position - transform.position).normalized;
 

@@ -26,8 +26,7 @@ public class Tilemap : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		LoadJSON("Test2.json");
-
-		GetComponent<ApartmentGenerator>().GenerateFloor(this);
+		GetComponent<ApartmentGenerator>().SetTileMap(this);
 	}
 
 	void LoadJSON(string filename)

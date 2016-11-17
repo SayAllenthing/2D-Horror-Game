@@ -27,8 +27,8 @@ public class LightingCamera : MonoBehaviour
 	{
 		CreateTexture();
 
-		if(Input.GetKeyDown(KeyCode.P))
-			TakeScreen();
+		//if(Input.GetKeyDown(KeyCode.P))
+			//TakeScreen();
 	}
 
 	void CreateTexture()

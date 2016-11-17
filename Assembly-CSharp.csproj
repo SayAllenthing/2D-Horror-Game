@@ -45,10 +45,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\AINetwork.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\Debug\DebugManager.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
+     <Compile Include="Assets\Scripts\Game\Item.cs" />
+     <Compile Include="Assets\Scripts\Game\ItemPrefabManager.cs" />
+     <Compile Include="Assets\Scripts\GameMapData.cs" />
      <Compile Include="Assets\Scripts\Generation\Apartment.cs" />
      <Compile Include="Assets\Scripts\Generation\ApartmentGenerator.cs" />
      <Compile Include="Assets\Scripts\Generation\Room.cs" />
@@ -60,9 +62,11 @@
      <Compile Include="Assets\Scripts\Lighting\Triangulator.cs" />
      <Compile Include="Assets\Scripts\Menu\MainMenuManager.cs" />
      <Compile Include="Assets\Scripts\MonsterTitleScreen.cs" />
-     <Compile Include="Assets\Scripts\NetworkPlayer.cs" />
      <Compile Include="Assets\Scripts\Networking\LobbyManagerWrapper.cs" />
      <Compile Include="Assets\Scripts\Networking\LobbyPlayer.cs" />
+     <Compile Include="Assets\Scripts\Networking\NetworkHelper.cs" />
+     <Compile Include="Assets\Scripts\Networking\NetworkPlayer.cs" />
+     <Compile Include="Assets\Scripts\Networking\NetworkTransmitter.cs" />
      <Compile Include="Assets\Scripts\Node.cs" />
      <None Include="Assets\Shaders\NewUnlitShader.shader" />
      <None Include="Assets\Shaders\Shader_FlatColour.shader" />

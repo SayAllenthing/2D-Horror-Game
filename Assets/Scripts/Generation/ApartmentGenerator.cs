@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class ApartmentGenerator : MonoBehaviour 
 {	
+	public static ApartmentGenerator Instance;
+
 	public PhysicsMaterial2D mat;
 
 	int[,] MapData;
@@ -11,22 +13,69 @@ public class ApartmentGenerator : MonoBehaviour
 	int ApartmentWidth = 20;
 	int ApartmentHeight = 20;
 
-	int Apartments = 5;
+	int NumApartments = 5;
 
-	List<Room> Rooms;
+	public int Seed = 0;
+
+	List<Apartment> Apartments = new List<Apartment>();
+
+	Tilemap tileMap;
+
+	System.Random Rng;
 
 	// Use this for initialization
-	void Start () 
+	void Awake () 
 	{
-		//GenerateRoomReal();
+		if(Instance != null)
+		{
+			DestroyImmediate(gameObject);
+		}
+
+		Instance = this;
+		DontDestroyOnLoad(this);
 	}
 
-	public void GenerateFloor(Tilemap tm)
+	void OnLevelWasLoaded(int level)
+	{
+		if(level == 1)
+		{
+			GenerateFloor();
+			GenerateTiles();
+		}
+	}
+
+	public void SetSeed(int _seed)
+	{
+		Seed = _seed;
+
+		//If seed gets set as zero it will auto generate
+		if(Mathf.Abs(Seed) < 200)
+		{
+			while( Mathf.Abs(Seed) < 200)
+			{			
+				Seed = Random.Range(-10000, 10000);
+			}
+		}
+
+		Rng = new System.Random(Seed);
+
+		MainMenuManager.Instance.SetSeed(Seed);
+	}
+
+	public void SetTileMap(Tilemap tm)
+	{
+		tileMap = tm;
+	}
+
+	public void GenerateFloor()
 	{
 		GenerateApartments();
 		GenerateHallway();
+	}
 
-		float size = tm.Tiles[0].sprite.bounds.size.x;
+	public void GenerateTiles()
+	{
+		float size = tileMap.Tiles[0].sprite.bounds.size.x;
 
 		int MapWidth = MapData.GetLength(0);
 		int MapHeight = MapData.GetLength(1);
@@ -38,7 +87,7 @@ public class ApartmentGenerator : MonoBehaviour
 			for(int y = 0; y < MapHeight; y++)
 			{
 				int tile = MapData[x,y];
-				Tilemap.TileData td = tm.Tiles[tile];
+				Tilemap.TileData td = tileMap.Tiles[tile];
 
 				GameObject g = new GameObject();
 				g.transform.parent = transform;
@@ -53,22 +102,24 @@ public class ApartmentGenerator : MonoBehaviour
 					g.GetComponent<BoxCollider2D>().sharedMaterial = mat;
 				}
 
-				Node node = new Node(td.bPhysics, g.transform.localPosition, x, y);
+				Node node = new Node(td.bPhysics, g.transform.localPosition, x, y, g);
 				PathFindingData[x,y] = node;
 			}
 		}
 
-		AINetwork.Instance.SetMapData(PathFindingData, size);
+		GameMapData.Instance.SetMapData(PathFindingData, size);
 	}
 
 	public void GenerateApartments()
 	{
-		MapData = new int[ApartmentWidth * Apartments, ApartmentHeight + 4];
+		MapData = new int[ApartmentWidth * NumApartments, ApartmentHeight + 4];
 
-		for(int i = 0; i < Apartments; i++)
+		for(int i = 0; i < NumApartments; i++)
 		{
 			Apartment a = new Apartment(ApartmentWidth, ApartmentHeight, i * ApartmentWidth, 0);
+			a.SetSeed(Rng);
 			MapData = a.CreateApartment(MapData);
+			Apartments.Add(a);
 		}
 	}
 

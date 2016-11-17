@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class AINetwork : MonoBehaviour {
+public class GameMapData : MonoBehaviour {
 
-	public static AINetwork Instance;
+	public static GameMapData Instance;
 
 	Node[,] Grid;
 
@@ -53,6 +53,23 @@ public class AINetwork : MonoBehaviour {
 		return Grid[x,y];
 	}
 
+
+	//Objects
+	public bool PlaceObject(string Object, Vector3 pos)
+	{
+		Node n = GetNodeFromWorldPoint(pos);
+
+		if(n.CanPlaceObject())
+		{
+			GameObject prefab = ItemPrefabManager.Instance.GetItemPrefab(Item.eItemType.LAMP);
+
+			n.PlaceObject(prefab);
+		}
+
+		return false;
+	}
+
+	//AI
 	public void FindPath(Vector3 startPos, Vector3 endPos)
 	{
 		Node startNode = GetNodeFromWorldPoint(startPos);
@@ -176,7 +193,7 @@ public class AINetwork : MonoBehaviour {
 		return neighbours;
 	}
 
-
+	//Debug
 	public List<Node> ThePath;
 	void OnDrawGizmos()
 	{

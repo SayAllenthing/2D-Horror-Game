@@ -93,18 +93,21 @@ public class MuzzleLight : MonoBehaviour {
 		msh.vertices = vertices;
 		msh.triangles = indices;
 
-	
-		gameObject.GetComponent<MeshFilter>().mesh = msh;
 
+		renderer.material.SetVector("_Color",  new Vector4(MuzzleColor.r, MuzzleColor.g, MuzzleColor.b, MuzzleColor.a));
 		renderer.material.SetVector("_Source", new Vector4(transform.position.x, transform.position.y, 0, 1));
 		renderer.material.SetFloat("_HiY", Brightness);
-		renderer.material.SetFloat("_LoY", -50);
+		renderer.material.SetFloat("_LoY", -10);
+
+		gameObject.GetComponent<MeshFilter>().mesh = msh;
+
+
 
 
 		renderer.enabled = true;
 
 		EndTime = Time.time + 0.1f;
-		QuadRenderer.material.color = MuzzleColor;
+		//QuadRenderer.material.color = MuzzleColor;
 
 		yield return null;
 	}

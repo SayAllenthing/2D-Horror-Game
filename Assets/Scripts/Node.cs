@@ -14,13 +14,27 @@ public class Node
 
 	public Node Parent;
 
-	public Node(bool _physics, Vector3 _pos, int _x, int _y)
+	bool bHasObject = false;
+
+	public GameObject gameObject;
+	SpriteRenderer spriteRenderer;
+
+	float Width;
+	float Height;
+
+	public Node(bool _physics, Vector3 _pos, int _x, int _y, GameObject _g)
 	{
 		bPhysics = _physics;
 		Position = _pos;
 
 		X = _x;
 		Y = _y;
+
+		gameObject = _g;
+		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+		Width = spriteRenderer.bounds.size.x;
+		Height = spriteRenderer.bounds.size.y;
 	}
 
 	public int fCost
@@ -29,5 +43,20 @@ public class Node
 		{
 			return gCost + hCost;
 		}
+	}
+
+	public bool CanPlaceObject()
+	{
+		return !bPhysics && !bHasObject;
+	}
+
+	public void PlaceObject(GameObject obj)
+	{
+		Vector3 pos = Position;
+		pos.y += Height/2;
+
+		GameObject g = GameObject.Instantiate(obj, pos, Quaternion.identity) as GameObject;
+		NetworkHelper.Instance.SpawnObject(g);
+		bHasObject = true;
 	}
 }

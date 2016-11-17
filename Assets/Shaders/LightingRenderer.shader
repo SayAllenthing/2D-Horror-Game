@@ -23,9 +23,15 @@ struct Input {
 void surf (Input IN, inout SurfaceOutput o) {
 	fixed4 c = tex2D(_MainTex, IN.uv_MainTex);
 
-	float diff = length(c.rgb - float3(1,1,1));
+	float diff = c.a;// length(c.rgb - float3(1,1,1));
 
-	o.Albedo = _Color.rgb * clamp(diff, 0, 0.4);
+	if(diff > 0)
+		o.Albedo = c.rgb * clamp(diff, 0.1, 0.4);
+	else
+		o.Albedo = _Color.rgb * clamp(diff, 0.0, 0.4);
+
+
+
 	o.Alpha = clamp(_Darkness - (diff), 0.5, _Darkness);
 }
 ENDCG

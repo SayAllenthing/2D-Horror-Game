@@ -8,6 +8,7 @@ Shader "Custom/Light2D_pixel"
 		_Source ("Source", vector) = (0,0,0,0)
 		_LoY ("Opaque Y", float) = -10
 		_HiY ("Distance", float) = 5
+		_Color ("Main Color", Color) = (1,1,1,1)
 	}
 	SubShader
 	{
@@ -30,6 +31,7 @@ Shader "Custom/Light2D_pixel"
 			float4 _Source;
 			half _HiY;
 			half _LoY;
+			fixed4 _Color;
 
 			struct VertexOutput
 			{
@@ -53,7 +55,7 @@ Shader "Custom/Light2D_pixel"
 				float len = length(i.posWorld - _Source.xy);
 			   	float alpha = 1 - saturate((len - _LoY) / (_HiY - _LoY));
 
-				col = float4(0,0,0,alpha);
+				col = float4(_Color.r,_Color.g,_Color.b, alpha);
 
 				return col;
 			}

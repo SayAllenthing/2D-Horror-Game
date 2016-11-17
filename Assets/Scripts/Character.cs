@@ -16,6 +16,8 @@ public class Character : MonoBehaviour {
 	public DynamicLight_Flashlight FlashLight;
 	public MuzzleLight MuzzleLight;
 
+	public NetworkPlayer NetPlayer;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -28,9 +30,10 @@ public class Character : MonoBehaviour {
 
 		DebugManager.Instance.Character = transform;
 
-		AINetwork.Instance.AddActor(transform);
+		GameMapData.Instance.AddActor(transform);
 
 		transform.position = new Vector3(2,2,0);
+		NetPlayer = GetComponent<NetworkPlayer>();
 	}
 	
 	// Update is called once per frame
@@ -58,6 +61,7 @@ public class Character : MonoBehaviour {
 		if(Input.GetButtonDown("Fire1"))
 		{
 			HandleFire();
+			NetPlayer.CmdFire();
 		}
 
 		if(Input.GetKeyDown(KeyCode.F))
@@ -66,7 +70,7 @@ public class Character : MonoBehaviour {
 		}
 	}
 
-	void HandleFire()
+	public void HandleFire()
 	{
 		MuzzleLight.Refresh();
 

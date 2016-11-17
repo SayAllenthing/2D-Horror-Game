@@ -6,6 +6,21 @@ using UnityEngine.Networking;
 
 public class LobbyManagerWrapper : NetworkLobbyManager
 {
+	public static LobbyManagerWrapper Instance;
+
+	public bool bIsHost = false;
+
+	void Awake()
+	{
+		if(Instance != null)
+		{
+			DestroyImmediate(gameObject);
+		}
+
+		Instance = this;
+	}
+
+
 	public Dictionary<int, LobbyPlayer> LobbyPlayers = new Dictionary<int, LobbyPlayer>();
 
 	void PreStartConnect()
@@ -16,7 +31,7 @@ public class LobbyManagerWrapper : NetworkLobbyManager
 
 	void SetPort()
 	{
-		NetworkManager.singleton.networkPort = 7777;
+		NetworkManager.singleton.networkPort = int.Parse(MainMenuManager.Instance.Port);
 	}
 
 	//UI Button Commands
@@ -29,21 +44,37 @@ public class LobbyManagerWrapper : NetworkLobbyManager
 	public void OnJoinClicked()
 	{
 		PreStartConnect();
-		NetworkManager.singleton.networkAddress = "localhost";
+
+		//NetworkManager.singleton.networkAddress = "localhost";
+		//NetworkManager.singleton.networkPort = 7777;
 		this.StartClient();
 	}
 
 	//Events
-	public override void OnStartHost()
+	public override void OnLobbyStartHost()
 	{
-		base.OnStartHost();
+		base.OnLobbyStartHost();
 
+		bIsHost = true;
 		Debug.Log("Host started");
+
+		//MainMenuManager.Instance.OnLoadLobby();
+	}
+
+	public override void OnLobbyStartClient(NetworkClient lobbyClient)
+	{
+		base.OnLobbyStartClient(lobbyClient);
+		Debug.Log("Client started");
+
+		MainMenuManager.Instance.OnLoadLobby();
 	}
 
 	public override void OnStartServer()
 	{
-		Debug.Log("On Start Server");
+		Debug.Log("On Start Lobby Server");
+
+		ApartmentGenerator.Instance.SetSeed(0);
+
 		base.OnStartServer();
 	}
 
@@ -92,5 +123,19 @@ public class LobbyManagerWrapper : NetworkLobbyManager
 	{
 		Debug.Log("Removing Player - Connection: " + conn.connectionId);
 		//LobbyPlayers.Remove(conn.connectionId);
+	}
+
+	public void OnBackPressed()
+	{
+		if(bIsHost)
+		{
+			Debug.Log("Host is leaving");
+			base.StopHost();
+		}
+		else
+		{
+			Debug.Log("Client is leaving");
+			StopClient();
+		}
 	}
 }

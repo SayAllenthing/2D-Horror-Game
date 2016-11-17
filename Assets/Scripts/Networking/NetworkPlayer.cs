@@ -78,4 +78,16 @@ public class NetworkPlayer : NetworkBehaviour
 		}
 	}
 
+	[Command]
+	public void CmdFire()
+	{
+		RpcFire();
+	}
+
+	[ClientRpc]
+	public void RpcFire()
+	{
+		if(!isLocalPlayer)
+			MyCharacter.HandleFire();
+	}
 }

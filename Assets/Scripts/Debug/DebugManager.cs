@@ -34,6 +34,6 @@ public class DebugManager : MonoBehaviour {
 
 	void SpawnNewObject()
 	{
-		GameObject g = GameObject.Instantiate(SpawnObject, Character.position, Quaternion.identity) as GameObject;
+		GameMapData.Instance.PlaceObject("Lamp", Character.position);
 	}
 }
