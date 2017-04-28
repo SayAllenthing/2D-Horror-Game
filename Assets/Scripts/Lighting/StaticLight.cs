@@ -17,7 +17,7 @@ public class StaticLight : MonoBehaviour {
 		mask = ~((1 << 9) | (1 << 8));
 		msh = new Mesh();
 
-		//CreatePolygon();
+		Refresh();
 	}
 
 	public void Refresh()

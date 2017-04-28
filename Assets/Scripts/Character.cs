@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Character : MonoBehaviour {
 
@@ -17,11 +18,28 @@ public class Character : MonoBehaviour {
 	public MuzzleLight MuzzleLight;
 
 	public NetworkPlayer NetPlayer;
+	Inventory inventory;
+
+	public int InventorySpaces = 5;
 
 	// Use this for initialization
 	void Start () 
 	{
 		rigidbody = GetComponent<Rigidbody2D>();
+
+		List<Inventory.InventoryObject> inventory = new List<Inventory.InventoryObject>();
+		for(int i = 0; i < InventorySpaces; i++)
+		{
+			Inventory.InventoryObject obj;
+			obj.amount = 0;
+			obj.sprite = null;
+			obj.item = "";
+
+
+			//inventory.Add(obj);
+		}
+
+		GameUIManager.Instance.SetInventory(inventory);
 	}
 
 	public void InitLocalPlayer()
@@ -29,11 +47,13 @@ public class Character : MonoBehaviour {
 		bIsLocal = true;
 
 		DebugManager.Instance.Character = transform;
+		GameUIManager.Instance.RegisterLocalPlayer(this);
 
 		GameMapData.Instance.AddActor(transform);
 
 		transform.position = new Vector3(2,2,0);
 		NetPlayer = GetComponent<NetworkPlayer>();
+		inventory = GetComponent<Inventory>();
 	}
 	
 	// Update is called once per frame
@@ -66,7 +86,8 @@ public class Character : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.F))
 		{
-			FlashLight.renderer.enabled = !FlashLight.renderer.enabled;
+			//FlashLight.renderer.enabled = !FlashLight.renderer.enabled;
+			inventory.AddItem("Lamp", 1);
 		}
 	}
 
@@ -86,6 +107,11 @@ public class Character : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public void TryUseItem(string item)
+	{
+		
 	}
 
 	bool Fire(GameObject target)

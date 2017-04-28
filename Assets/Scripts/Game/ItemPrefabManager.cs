@@ -6,7 +6,7 @@ public class ItemPrefabManager : MonoBehaviour
 {
 	public static ItemPrefabManager Instance;
 
-	public List<Item> Items = new List<Item>();
+	public List<GameObject> Items = new List<GameObject>();
 
 	public void Awake()
 	{
@@ -18,19 +18,38 @@ public class ItemPrefabManager : MonoBehaviour
 		Instance = this;
 	}
 
-	public GameObject GetItemPrefab(Item.eItemType item)
+	public GameObject GetItemPrefab()
 	{
 		GameObject prefab = null;
 
 		for(int i = 0; i < Items.Count; i++)
 		{
-			if(Items[i].Type == item)
-			{
-				prefab = Items[i].gameObject;
-				break;
-			}
+			
 		}
 
 		return prefab;
 	}
+
+	public Sprite GetItemSprite()
+	{
+		Sprite sprite = null;
+
+		for(int i = 0; i < Items.Count; i++)
+		{
+			//if(Items[i].Type == item)
+			{
+				//sprite = Items[i].GetComponent<SpriteRenderer>().sprite;
+				break;
+			}
+		}
+
+		return sprite;
+	}
+
+	public Sprite GetItemSprite(string item)
+	{		
+		return GetItemSprite();
+	}
+
+
 }

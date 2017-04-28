@@ -1,4 +1,6 @@
-﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 Shader "Custom/Light2D_pixel"
 {
@@ -42,7 +44,7 @@ Shader "Custom/Light2D_pixel"
 			VertexOutput vert (appdata_base v)
 			{
 				VertexOutput o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				o.posWorld = mul(unity_ObjectToWorld, v.vertex);
 				return o;
 			}

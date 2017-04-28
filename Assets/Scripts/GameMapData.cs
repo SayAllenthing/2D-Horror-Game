@@ -40,7 +40,7 @@ public class GameMapData : MonoBehaviour {
 		Actors.Add(t);
 	}
 
-	Node GetNodeFromWorldPoint(Vector3 pos)
+	public Node GetNodeFromWorldPoint(Vector3 pos)
 	{
 		float percentX = pos.x / (Grid.GetLength(0) * TileSize);
 		float percentY = pos.y / (Grid.GetLength(1) * TileSize);
@@ -53,10 +53,17 @@ public class GameMapData : MonoBehaviour {
 		return Grid[x,y];
 	}
 
+	public Node GetNodeFromXY(int x, int y)
+	{
+		return Grid[x,y];
+	}
 
 	//Objects
 	public bool PlaceObject(string Object, Vector3 pos)
 	{
+		NetworkHelper.Instance.SpawnObject(pos);
+
+		/*
 		Node n = GetNodeFromWorldPoint(pos);
 
 		if(n.CanPlaceObject())
@@ -65,6 +72,7 @@ public class GameMapData : MonoBehaviour {
 
 			n.PlaceObject(prefab);
 		}
+		*/
 
 		return false;
 	}

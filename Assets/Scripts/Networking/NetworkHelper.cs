@@ -19,19 +19,42 @@ public class NetworkHelper : NetworkBehaviour
 		Instance = this;
 	}
 
-	public void SpawnObject(GameObject g)
+	public void SpawnObject(Vector3 pos)
 	{
-		CmdSpawnObject(g, g.transform.position);
+		CmdSpawnObject(pos);
 	}
 
 	[Command]
-	void CmdSpawnObject(GameObject g, Vector3 pos)
+	void CmdSpawnObject(Vector3 pos)
 	{		
 		if(this.isServer)
 		{
-			GameObject pref = ItemPrefabManager.Instance.GetItemPrefab(Item.eItemType.LAMP);
-			GameObject obj = GameObject.Instantiate(pref, pos, Quaternion.identity) as GameObject;
-			NetworkServer.Spawn(obj);
+			Node n = GameMapData.Instance.GetNodeFromWorldPoint(pos);
+
+			if(n.CanPlaceObject())
+			{
+				Vector3 nodePos = n.GetObjectPosition();
+
+				GameObject pref = null; //ItemPrefabManager.Instance.GetItemPrefab(Item.eItemType.LAMP);
+				GameObject obj = GameObject.Instantiate(pref, nodePos, Quaternion.identity) as GameObject;
+
+				obj.GetComponent<MapObject>().SetTile(n.X, n.Y);
+
+				NetworkServer.Spawn(obj);
+
+				//Cut out RPC Call, let the object spawn with the information
+				//RpcSetObject(obj.GetComponent<NetworkIdentity>().netId, n.X, n.Y);
+			}
+		}
+	}
+
+	[ClientRpc]
+	void RpcSetObject(NetworkInstanceId id, int x, int y)
+	{
+		if(!this.isServer)
+		{
+			GameObject obj = ClientScene.FindLocalObject(id) as GameObject;
+			GameMapData.Instance.GetNodeFromXY(x,y).SetObject(obj);
 		}
 	}
 }

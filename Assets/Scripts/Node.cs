@@ -52,11 +52,23 @@ public class Node
 
 	public void PlaceObject(GameObject obj)
 	{
+		//Legacy
 		Vector3 pos = Position;
 		pos.y += Height/2;
 
-		GameObject g = GameObject.Instantiate(obj, pos, Quaternion.identity) as GameObject;
-		NetworkHelper.Instance.SpawnObject(g);
+		//GameObject g = GameObject.Instantiate(obj, pos, Quaternion.identity) as GameObject;
+		//NetworkHelper.Instance.SpawnObject(g);
 		bHasObject = true;
+	}
+
+	public void SetObject(GameObject obj)
+	{
+		gameObject = obj;
+		bHasObject = true;
+	}
+
+	public Vector3 GetObjectPosition()
+	{
+		return new Vector3(Position.x, Position.y + Height/2, Position.z);
 	}
 }

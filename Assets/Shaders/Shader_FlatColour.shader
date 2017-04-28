@@ -1,4 +1,6 @@
-﻿Shader "Shaders/Allen/Flat Color" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Shaders/Allen/Flat Color" {
 	Properties	{
 		_Color ("Color", Color) = (1.0, 1.0, 1.0, 1.0)
 	}
@@ -27,7 +29,7 @@
 			vertexOutput vert(vertexInput v){
 				vertexOutput o;
 
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				return o;
 			}
