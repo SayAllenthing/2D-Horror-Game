@@ -18,7 +18,7 @@ public class Character : MonoBehaviour {
 	public MuzzleLight MuzzleLight;
 
 	public NetworkPlayer NetPlayer;
-	Inventory inventory;
+	public Inventory inventory;
 
 	public int InventorySpaces = 5;
 
@@ -27,19 +27,9 @@ public class Character : MonoBehaviour {
 	{
 		rigidbody = GetComponent<Rigidbody2D>();
 
-		List<Inventory.InventoryObject> inventory = new List<Inventory.InventoryObject>();
-		for(int i = 0; i < InventorySpaces; i++)
-		{
-			Inventory.InventoryObject obj;
-			obj.amount = 0;
-			obj.sprite = null;
-			obj.item = "";
+		inventory.AddItem("SmallLamp", 12);
 
-
-			//inventory.Add(obj);
-		}
-
-		GameUIManager.Instance.SetInventory(inventory);
+		//GameUIManager.Instance.SetInventory(inventory);
 	}
 
 	public void InitLocalPlayer()
@@ -87,7 +77,7 @@ public class Character : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.F))
 		{
 			//FlashLight.renderer.enabled = !FlashLight.renderer.enabled;
-			inventory.AddItem("Lamp", 1);
+			inventory.AddItem("SmallLamp", 1);
 		}
 	}
 
@@ -148,4 +138,5 @@ public class Character : MonoBehaviour {
 		else if(dir < 0)
 			sprite.transform.localScale = new Vector3(-1, 1, 1);
 	}
+
 }

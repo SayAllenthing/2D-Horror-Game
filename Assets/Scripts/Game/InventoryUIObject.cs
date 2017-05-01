@@ -7,38 +7,38 @@ public class InventoryUIObject : MonoBehaviour
 	public Image Renderer;
 	public Text AmountText;
 
-	public string Item;
+	public ItemData Data;
 
 	public Button button;
 
 	void Start()
-	{
-		Debug.Log("Test");
-
+	{		
 		GetComponent<Button>().onClick.AddListener(delegate {
 			OnClicked();
 		});
 	}
 
-	public void SetObject(Inventory.InventoryObject obj)
+	public void SetObject(ItemData _data, int _num)
 	{
-		Item = obj.item;
+		Data = _data;
 
-		AmountText.text = obj.amount > 1 ? obj.amount.ToString() : "";
+		AmountText.text = _num > 1 ? _num.ToString() : "";
 
-		if(obj.amount < 1)
+		if(_num < 1)
 		{
 			Renderer.enabled = false;
+			GetComponent<Button>().enabled = false;
 		}
 		else
 		{
 			Renderer.enabled = true;
-			Renderer.sprite = obj.sprite;
+			Renderer.sprite = Data.Sprite;
+			GetComponent<Button>().enabled = true;
 		}
 	}
 
 	public void OnClicked()
 	{
-		
+		GameUIManager.Instance.OnItemClicked(Data.Name);
 	}
 }

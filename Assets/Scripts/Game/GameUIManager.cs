@@ -30,7 +30,7 @@ public class GameUIManager : MonoBehaviour {
 		MyCharacter = c;
 	}
 
-	public void SetInventory(List<Inventory.InventoryObject> items)
+	public void SetInventory(Dictionary<string, int> items, int max)
 	{
 		for(int i = 0; i < InventoryGameObjects.Count; i++)
 		{
@@ -39,18 +39,33 @@ public class GameUIManager : MonoBehaviour {
 
 		InventoryGameObjects.Clear();
 
-		InventoryPanel.sizeDelta = new Vector2(10 + (items.Count*50), 60);
+		InventoryPanel.sizeDelta = new Vector2(10 + (max*50), 60);
 
-		for(int i = 0; i < items.Count; i++)
+		foreach(KeyValuePair<string, int> i in items)
+		{
+			if(i.Value > 0)
+			{
+				Debug.Log("Adding item: " + i.Key);
+
+				GameObject g = GameObject.Instantiate(InventoryItemPrefab, InventoryPanel.transform) as GameObject;
+				g.GetComponent<InventoryUIObject>().SetObject(ItemFactory.Instance.GetItem(i.Key), i.Value);
+				InventoryGameObjects.Add(g);
+			}
+		}
+
+		int emptyNum = max - InventoryGameObjects.Count;
+
+		for(int i = 0; i < emptyNum; i++)
 		{
 			GameObject g = GameObject.Instantiate(InventoryItemPrefab, InventoryPanel.transform) as GameObject;
-			g.GetComponent<InventoryUIObject>().SetObject(items[i]);
+			g.GetComponent<InventoryUIObject>().SetObject(null, 0);
 			InventoryGameObjects.Add(g);
 		}
 	}
 
 	public void OnItemClicked(string item)
 	{
-		
+		MyCharacter.inventory.AddItem(item, -1);
+		NetworkHelper.Instance.SpawnObject(MyCharacter.transform.position, item);
 	}
 }

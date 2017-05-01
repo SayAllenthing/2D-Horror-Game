@@ -6,9 +6,8 @@ using UnityEditor;
 public class ItemCreator : EditorWindow 
 {
 	string ItemName = "New Item";
-
-	Sprite ItemSprite;
-
+	ItemData.eItemType ItemType = ItemData.eItemType.NONE;
+	Sprite ItemSprite = null;
 
 	[MenuItem ("Window/Item Creator")]
 
@@ -21,17 +20,16 @@ public class ItemCreator : EditorWindow
 		GUILayout.Label ("New Item", EditorStyles.boldLabel);
 
 		ItemName = EditorGUILayout.TextField("Item Name", ItemName);
-
-		GUILayout.BeginVertical();
-		ItemSprite = EditorGUI.ObjectField(new Rect(10,50,200,200), "Sprite", ItemSprite, typeof(Sprite)) as Sprite;
-		GUILayout.Space(210);
-		GUILayout.EndVertical();
+		ItemType = (ItemData.eItemType)EditorGUILayout.EnumPopup("Type", ItemType);
+		ItemSprite = EditorGUILayout.ObjectField("Sprite", ItemSprite, typeof(Sprite)) as Sprite;
 
 
 		if(GUILayout.Button("Create"))
 		{
-			Item i = ScriptableObjectUtility.CreateAsset<Item>(ItemName) as Item;
+			ItemData i = ScriptableObjectUtility.CreateAsset<ItemData>(ItemName) as ItemData;
 			i.Name = ItemName;
+			i.Type = ItemType;
+			i.Sprite = ItemSprite;
 		}
 	}
 }

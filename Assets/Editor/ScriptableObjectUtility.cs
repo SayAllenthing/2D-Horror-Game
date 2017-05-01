@@ -11,7 +11,10 @@ public static class ScriptableObjectUtility
     {
         T asset = ScriptableObject.CreateInstance<T>();
 
-		string path = "Assets/Resources/Items";            
+		string path = "Assets/Resources";
+
+		if(asset.GetType() == typeof(ItemData))
+			path = "Assets/Resources/Items";
 
         string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath(path + "/" + name + ".asset");
 
@@ -24,4 +27,10 @@ public static class ScriptableObjectUtility
 
 		return asset;
     }
+
+	[MenuItem ("Assets/Create/Item Database/CreateDatabase")]
+	public static void CreateDatabase()
+	{
+		ScriptableObjectUtility.CreateAsset<ItemDatabase>("ItemDatabase");
+	}
 }

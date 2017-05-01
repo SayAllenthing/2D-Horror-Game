@@ -61,7 +61,7 @@ public class GameMapData : MonoBehaviour {
 	//Objects
 	public bool PlaceObject(string Object, Vector3 pos)
 	{
-		NetworkHelper.Instance.SpawnObject(pos);
+		NetworkHelper.Instance.SpawnObject(pos, Object);
 
 		/*
 		Node n = GetNodeFromWorldPoint(pos);

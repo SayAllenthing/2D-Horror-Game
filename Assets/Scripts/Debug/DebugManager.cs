@@ -34,6 +34,6 @@ public class DebugManager : MonoBehaviour {
 
 	void SpawnNewObject()
 	{
-		GameMapData.Instance.PlaceObject("Lamp", Character.position);
+		GameMapData.Instance.PlaceObject("SmallLamp", Character.position);
 	}
 }

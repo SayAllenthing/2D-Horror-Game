@@ -4,18 +4,10 @@ using System;
 using System.Reflection;
 using System.Linq;
 
-[CustomEditor(typeof(Item))]
+[CustomEditor(typeof(ItemData))]
 public class ItemEditor : Editor
 {
-
-    // Add a menu item to create Item ScriptableObjects:
-    [MenuItem("Assets/Create/Item")]
-    public static void CreateAsset()
-    {
-        ScriptableObjectUtility.CreateAsset<Item>();
-    }
-
-    // Holds ItemAttribute types for popup:
+	// Holds ItemAttribute types for popup:
     private string[] m_attributeTypeNames = new string[0];
     private int m_attributeTypeIndex = -1;
 
@@ -28,9 +20,17 @@ public class ItemEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        var item = target as Item;
+		var item = target as ItemData;
+
+		EditorGUILayout.LabelField("Base Values", EditorStyles.boldLabel);
 
 		item.Name = EditorGUILayout.TextField("Name", item.Name);
+		item.Type = (ItemData.eItemType)EditorGUILayout.EnumPopup("Type", item.Type);
+		item.Sprite = EditorGUILayout.ObjectField("Sprite", item.Sprite, typeof(Sprite)) as Sprite;
+
+		EditorGUILayout.LabelField("Attributes", EditorStyles.boldLabel);
+
+		Debug.Log(item.attributes);
 
         // Draw attributes with a delete button below each one:
         int indexToDelete = -1;
