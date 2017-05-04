@@ -15,7 +15,7 @@ public class DebugManager : MonoBehaviour {
 		if(Instance != null)
 			Instance = null;
 
-		Instance = this;
+		Instance = this;        
 	}
 	
 	// Update is called once per frame
@@ -26,9 +26,9 @@ public class DebugManager : MonoBehaviour {
 
 	void HandleInput ()
 	{
-		if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
 		{
-			SpawnNewObject();
+            NetworkHelper.Instance.SpawnDebugObject();
 		}
 	}
 

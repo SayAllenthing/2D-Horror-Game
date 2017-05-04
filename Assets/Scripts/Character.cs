@@ -27,7 +27,7 @@ public class Character : MonoBehaviour {
 	{
 		rigidbody = GetComponent<Rigidbody2D>();
 
-		inventory.AddItem("SmallLamp", 12);
+		
 
 		//GameUIManager.Instance.SetInventory(inventory);
 	}
@@ -44,7 +44,14 @@ public class Character : MonoBehaviour {
 		transform.position = new Vector3(2,2,0);
 		NetPlayer = GetComponent<NetworkPlayer>();
 		inventory = GetComponent<Inventory>();
-	}
+
+        inventory.AddItem("SmallLamp", 12);
+    }
+
+    public void SetSprite(Sprite s)
+    {
+        sprite.GetComponent<SpriteRenderer>().sprite = s;
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -73,6 +80,10 @@ public class Character : MonoBehaviour {
 			HandleFire();
 			NetPlayer.CmdFire();
 		}
+        else if(Input.GetButtonDown("Fire2"))
+        {
+            OnPickObject();
+        }
 
 		if(Input.GetKeyDown(KeyCode.F))
 		{
@@ -80,6 +91,24 @@ public class Character : MonoBehaviour {
 			inventory.AddItem("SmallLamp", 1);
 		}
 	}
+
+    public void OnPickObject()
+    {
+        LayerMask mask = 1 << LayerMask.NameToLayer("Item");
+
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, mask);
+
+        if (hit.collider != null)
+        {
+            MapObject mo = hit.collider.GetComponent<MapObject>();
+            string item = mo.Data.Name;
+            if(inventory.AddItem(item, 1))
+            {
+                NetworkHelper.Instance.DestroyObject(hit.collider.gameObject);
+                //Destroy(hit.collider.gameObject);
+            }
+        }
+    }
 
 	public void HandleFire()
 	{
@@ -89,39 +118,35 @@ public class Character : MonoBehaviour {
 
 		for(int i = 0; i < hits.Length; i++)
 		{
-			if(hits[i].collider.gameObject.name == "Beast")
+			if(hits[i].collider.tag == "Enemy")
 			{
 				if(Fire(hits[i].collider.gameObject))
 				{
 					GameObject.Destroy(hits[i].collider.gameObject);
+                    break;
 				}
 			}
 		}
-	}
-
-	public void TryUseItem(string item)
-	{
-		
-	}
+	}    
 
 	bool Fire(GameObject target)
 	{
 		Vector3 diff = (target.transform.position - transform.position);
 		float dot = Vector3.Dot(diff.normalized, LastAngle);
 
-		float baseChance = dot * 50;
+		float baseChance = dot * 50 - diff.sqrMagnitude;
 		float shot = Random.Range(0,100);
 
 		if(baseChance > 0)
 		{
 			if(shot > (100 - baseChance))
 			{
-				Debug.Log("Killed " + baseChance + "%" + " " + shot);
+				Debug.Log("Killed " + baseChance + "%" + " " + shot + " diff: " + diff.sqrMagnitude);
 				return true;
 			}
 		}
 
-		Debug.Log("Miss " + baseChance + "%" + " " + shot);
+		Debug.Log("Miss " + baseChance + "%" + " " + shot + " diff: " + diff.sqrMagnitude);
 		return false;
 	}
 

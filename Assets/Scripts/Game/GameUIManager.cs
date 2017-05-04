@@ -65,7 +65,10 @@ public class GameUIManager : MonoBehaviour {
 
 	public void OnItemClicked(string item)
 	{
-		MyCharacter.inventory.AddItem(item, -1);
-		NetworkHelper.Instance.SpawnObject(MyCharacter.transform.position, item);
+        if (GameMapData.Instance.GetNodeFromWorldPoint(MyCharacter.transform.position).CanPlaceObject())
+        {
+            MyCharacter.inventory.AddItem(item, -1);
+            NetworkHelper.Instance.SpawnObject(MyCharacter.transform.position, item);
+        }
 	}
 }

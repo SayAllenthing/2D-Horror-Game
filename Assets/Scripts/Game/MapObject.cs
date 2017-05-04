@@ -14,7 +14,6 @@ public class MapObject : NetworkBehaviour {
 	public void SetData(ItemData _data)
 	{
 		Data = _data;
-
 		GetComponent<SpriteRenderer>().sprite = Data.Sprite;
 	}
 
@@ -23,7 +22,12 @@ public class MapObject : NetworkBehaviour {
 		GameMapData.Instance.GetNodeFromXY(X,Y).SetObject(this.gameObject);
 	}
 
-	public void SetTile(int _x, int _y)
+    private void OnDestroy()
+    {
+        GameMapData.Instance.GetNodeFromXY(X, Y).ClearObject();
+    }
+
+    public void SetTile(int _x, int _y)
 	{
 		X = _x;
 		Y = _y;

@@ -14,7 +14,7 @@ public class StaticLight : MonoBehaviour {
 
 	void Start () 
 	{
-		mask = ~((1 << 9) | (1 << 8));
+		mask = ~((1 << 9) | (1 << 8) | (1 << 10));
 		msh = new Mesh();
 
 		Refresh();

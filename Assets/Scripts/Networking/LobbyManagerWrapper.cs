@@ -8,6 +8,9 @@ public class LobbyManagerWrapper : NetworkLobbyManager
 {
 	public static LobbyManagerWrapper Instance;
 
+    static int CurrentPlayer = 0;
+    public List<Sprite> CharacterSprites;
+
 	public bool bIsHost = false;
 
 	void Awake()
@@ -107,6 +110,12 @@ public class LobbyManagerWrapper : NetworkLobbyManager
 	public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
 	{
 		GameObject player = (GameObject) Instantiate(gamePlayerPrefab, Vector3.zero, Quaternion.identity);
+
+        if(CharacterSprites.Count >= CurrentPlayer)
+        {
+            player.GetComponent<NetworkPlayer>().Sprite = CurrentPlayer;
+            CurrentPlayer++;
+        }
 
 		//LobbyPlayer lp = LobbyPlayers[conn.connectionId];
 		return player; 

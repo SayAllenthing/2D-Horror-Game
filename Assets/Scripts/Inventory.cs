@@ -13,14 +13,19 @@ public class Inventory : MonoBehaviour {
 		MaxItems = _maxItems;
 	}
 
-	public void AddItem(string item, int amount)
+	public bool AddItem(string item, int amount)
 	{
+        if (MyInventory.Count >= MaxItems)
+            return false;
+
 		if(HasItem(item))
 			MyInventory[item] += amount;
 		else
 			MyInventory[item] = amount;
 
 		UpdateInventory();
+
+        return true;
 	}
 
 	void UpdateInventory()

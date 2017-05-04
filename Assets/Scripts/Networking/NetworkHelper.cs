@@ -48,7 +48,39 @@ public class NetworkHelper : NetworkBehaviour
 		}
 	}
 
-	[ClientRpc]
+    public void SpawnDebugObject()
+    {
+        Vector3 pos = GameObject.Find("Enemy Spawner").transform.position;
+        CmdSpawnDebugObject(pos);
+    }
+
+    [Command]
+    void CmdSpawnDebugObject(Vector3 pos)
+    {
+        if (this.isServer)
+        {                        
+            GameObject e = Instantiate(DebugManager.Instance.SpawnObject, pos, Quaternion.identity);            
+            NetworkServer.Spawn(e);
+        }
+    }
+
+    public void DestroyObject(GameObject g)
+    {
+        //CmdDestroyObject(g.GetComponent<NetworkIdentity>().netId);
+        CmdDestroyObject(g);
+    }
+
+    [Command]
+    void CmdDestroyObject(GameObject g)
+    {
+        if (this.isServer)
+        {
+            NetworkServer.Destroy(g);     
+        }
+        //NetworkServer.FindLocalObject(id)
+    }
+
+    [ClientRpc]
 	void RpcSetObject(NetworkInstanceId id, string itemName)
 	{		
 		GameObject obj = ClientScene.FindLocalObject(id) as GameObject;

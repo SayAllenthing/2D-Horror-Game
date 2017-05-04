@@ -67,6 +67,12 @@ public class Node
 		bHasObject = true;
 	}
 
+    public void ClearObject()
+    {
+        gameObject = null;
+        bHasObject = false;
+    }
+
 	public Vector3 GetObjectPosition()
 	{
 		return new Vector3(Position.x, Position.y + Height/2, Position.z);

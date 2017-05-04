@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
 
 			Vector3 wantMove = (n.Position - transform.position).normalized;
 
-			Debug.Log(wantMove + " " + n.Position);
+			//Debug.Log(wantMove + " " + n.Position);
 
 			rigidbody.velocity =  new Vector2(wantMove.x, wantMove.y) * speed * Time.deltaTime;
 		}
@@ -60,6 +60,5 @@ public class Enemy : MonoBehaviour
 	void LookForTarget()
 	{
 		target = GameObject.Find("NetworkPlayer(Clone)");
-
 	}
 }
