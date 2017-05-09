@@ -30,6 +30,11 @@ public class DebugManager : MonoBehaviour {
 		{
             NetworkHelper.Instance.SpawnDebugObject();
 		}
+
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            NetworkHelper.Instance.SpawnObject(Character.position, "Scrap");
+        }
 	}
 
 	void SpawnNewObject()

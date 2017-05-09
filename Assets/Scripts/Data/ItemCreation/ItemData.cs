@@ -15,7 +15,8 @@ public class ItemData : ScriptableObject {
 		NONE,
 		PLACEABLE,
 		CONSUMEABLE,
-		WEAPON
+		WEAPON,
+        MATERIAL
 	}
 
 	public ItemData Clone(ItemData id)

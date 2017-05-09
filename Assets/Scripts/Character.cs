@@ -114,19 +114,22 @@ public class Character : MonoBehaviour {
 	{
 		MuzzleLight.Refresh();
 
-		RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 5f, Vector2.zero);
+        if(bIsLocal)
+        {
+            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 5f, Vector2.zero);
 
-		for(int i = 0; i < hits.Length; i++)
-		{
-			if(hits[i].collider.tag == "Enemy")
-			{
-				if(Fire(hits[i].collider.gameObject))
-				{
-					GameObject.Destroy(hits[i].collider.gameObject);
-                    break;
-				}
-			}
-		}
+            for (int i = 0; i < hits.Length; i++)
+            {
+                if (hits[i].collider.tag == "Enemy")
+                {
+                    if (Fire(hits[i].collider.gameObject))
+                    {
+                        NetworkHelper.Instance.DestroyObject(hits[i].collider.gameObject);
+                        break;
+                    }
+                }
+            }
+        }		
 	}    
 
 	bool Fire(GameObject target)
