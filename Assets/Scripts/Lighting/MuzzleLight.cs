@@ -7,6 +7,8 @@ public class MuzzleLight : MonoBehaviour {
 	public MeshRenderer renderer;
 	public MeshRenderer QuadRenderer;
 
+    public SpriteRenderer MuzzleFlareSprite;
+
 	public Color MuzzleColor;
 	Color QuadDefault;
 
@@ -36,15 +38,16 @@ public class MuzzleLight : MonoBehaviour {
 		if(renderer.enabled && Time.time > EndTime)
 		{
 			renderer.enabled = false;
-			QuadRenderer.material.color = QuadDefault;
+            MuzzleFlareSprite.enabled = false;
+            QuadRenderer.material.color = QuadDefault;
 		}
 	}
 
 	IEnumerator eCreatePolygon()
 	{
-		renderer.enabled = false;
+		renderer.enabled = false;        
 
-		Vector3 vector = Vector3.right;
+        Vector3 vector = Vector3.right;
 
 		float angle = -10;
 
@@ -59,6 +62,10 @@ public class MuzzleLight : MonoBehaviour {
 			//Debug.DrawRay(ray, vector * Brightness, Color.green, 5);
 
 			Vector3 dir = vector * (Brightness * 1.5f);
+
+            float multi = Mathf.Clamp(Vector3.Dot(Vector3.right, vector), 0.25f, 1);
+
+            //dir *= multi;
 
 			hit = Physics2D.Raycast(ray, dir, dir.magnitude, mask);
 
@@ -93,7 +100,6 @@ public class MuzzleLight : MonoBehaviour {
 		msh.vertices = vertices;
 		msh.triangles = indices;
 
-
 		renderer.material.SetVector("_Color",  new Vector4(MuzzleColor.r, MuzzleColor.g, MuzzleColor.b, MuzzleColor.a));
 		renderer.material.SetVector("_Source", new Vector4(transform.position.x, transform.position.y, 0, 1));
 		renderer.material.SetFloat("_HiY", Brightness);
@@ -101,10 +107,8 @@ public class MuzzleLight : MonoBehaviour {
 
 		gameObject.GetComponent<MeshFilter>().mesh = msh;
 
-
-
-
-		renderer.enabled = true;
+        MuzzleFlareSprite.enabled = true;
+        renderer.enabled = true;
 
 		EndTime = Time.time + 0.1f;
 		//QuadRenderer.material.color = MuzzleColor;
