@@ -8,6 +8,7 @@ public class GameUIManager : MonoBehaviour {
 	public static GameUIManager Instance;
 
 	public RectTransform InventoryPanel;
+	public Text ScrapText;
 
 	public GameObject InventoryItemPrefab;
 
@@ -61,6 +62,8 @@ public class GameUIManager : MonoBehaviour {
 			g.GetComponent<InventoryUIObject>().SetObject(null, 0);
 			InventoryGameObjects.Add(g);
 		}
+
+		ScrapText.text = "Scrap: " + MyCharacter.inventory.Scrap;
 	}
 
 	public void OnItemClicked(string item)

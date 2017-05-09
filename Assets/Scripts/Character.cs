@@ -102,7 +102,17 @@ public class Character : MonoBehaviour {
         {
             MapObject mo = hit.collider.GetComponent<MapObject>();
             string item = mo.Data.Name;
-            if(inventory.AddItem(item, 1))
+
+			if(mo.Data.Type == ItemData.eItemType.MATERIAL)
+			{
+				if(inventory.AddMaterial(item, 1) <= 0)
+				{
+					NetworkHelper.Instance.DestroyObject(hit.collider.gameObject);
+				}
+				//else
+				//Leave scrap on ground
+			}
+			else if(inventory.AddItem(item, 1))
             {
                 NetworkHelper.Instance.DestroyObject(hit.collider.gameObject);
                 //Destroy(hit.collider.gameObject);
