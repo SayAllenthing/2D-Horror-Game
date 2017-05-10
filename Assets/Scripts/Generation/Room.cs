@@ -245,7 +245,7 @@ public class Room
 			return Direction.NONE;	
 	}
 
-	int[] GetProperCoords(int _x, int _y)
+	public int[] GetProperCoords(int _x, int _y)
 	{
 		
 		if(pivot == Pivot.TOPRIGHT)

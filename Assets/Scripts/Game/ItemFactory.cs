@@ -22,7 +22,7 @@ public class ItemFactory : MonoBehaviour
 	public GameObject SpawnItem(string item)
 	{
 		ItemData data = Database.GetItem(item);
-		GameObject ret = GameObject.Instantiate(MapObjectPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+		GameObject ret = GameObject.Instantiate(MapObjectPrefab, Vector3.zero, Quaternion.identity) as GameObject;        
 
 		ret.GetComponent<MapObject>().SetData(data);
 
@@ -34,7 +34,10 @@ public class ItemFactory : MonoBehaviour
 	public void OnLocalObjectCreated(GameObject g, string item)
 	{
 		ItemData data = Database.GetItem(item);
-		g.GetComponent<MapObject>().SetData(data);
+
+        //Debug.Log("RPC? " + g + " " + item + " " + data);
+
+        g.GetComponent<MapObject>().SetData(data);
 		OnSpawnObject(g, data);
 	}
 

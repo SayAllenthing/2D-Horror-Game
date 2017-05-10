@@ -17,14 +17,17 @@ public class ApartmentGenerator : MonoBehaviour
 
 	public int Seed = 0;
 
-	List<Apartment> Apartments = new List<Apartment>();
+	public List<Apartment> Apartments = new List<Apartment>();
 
 	Tilemap tileMap;
 
 	System.Random Rng;
 
-	// Use this for initialization
-	void Awake () 
+    public delegate void GenerationCompleteDelegate();
+    public GenerationCompleteDelegate OnGenerationComplete;
+
+    // Use this for initialization
+    void Awake () 
 	{
 		if(Instance != null)
 		{
@@ -32,7 +35,7 @@ public class ApartmentGenerator : MonoBehaviour
 		}
 
 		Instance = this;
-		DontDestroyOnLoad(this);
+		DontDestroyOnLoad(this);        
 	}
 
 	void OnLevelWasLoaded(int level)
@@ -42,7 +45,10 @@ public class ApartmentGenerator : MonoBehaviour
 			GenerateFloor();
 			GenerateTiles();
 		}
-	}
+
+        if (OnGenerationComplete != null)
+            OnGenerationComplete();
+    }
 
 	public void SetSeed(int _seed)
 	{
@@ -70,7 +76,7 @@ public class ApartmentGenerator : MonoBehaviour
 	public void GenerateFloor()
 	{
 		GenerateApartments();
-		GenerateHallway();
+		GenerateHallway();       
 	}
 
 	public void GenerateTiles()

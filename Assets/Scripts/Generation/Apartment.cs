@@ -118,7 +118,13 @@ public class Apartment
 
 	void CreateEntrace()
 	{
-		int Entrance = Rng.Next(1, Width - 2);// Random.Range(1, Width - 2);
+		int Entrance = Rng.Next(1, 4);
+        //Door Left or Right
+        if(Rng.Next(0,2) < 1)
+        {
+            Entrance = Width - 2 - Entrance;
+        }
+
 		int Bottom = (Height - 1);
 		MapData[Entrance, Bottom] = 12;
 	}

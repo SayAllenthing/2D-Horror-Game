@@ -115,6 +115,7 @@
     <Compile Include="Assets\Scripts\Networking\LobbyManagerWrapper.cs" />
     <Compile Include="Assets\Scripts\Networking\LobbyPlayer.cs" />
     <Compile Include="Assets\Scripts\Networking\NetworkHelper.cs" />
+    <Compile Include="Assets\Scripts\Networking\NetworkItemGenerator.cs" />
     <Compile Include="Assets\Scripts\Networking\NetworkTransmitter.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\SpriteOutline.cs" />

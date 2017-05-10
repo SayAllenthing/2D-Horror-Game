@@ -36,7 +36,7 @@ public class NetworkHelper : NetworkBehaviour
 				Vector3 nodePos = n.GetObjectPosition();
 
 				GameObject pref = ItemFactory.Instance.MapObjectPrefab;
-				GameObject obj = GameObject.Instantiate(pref, nodePos, Quaternion.identity) as GameObject;
+				GameObject obj = GameObject.Instantiate(pref, nodePos, Quaternion.identity) as GameObject;                
 
 				obj.GetComponent<MapObject>().SetTile(n.X, n.Y);
 
@@ -82,8 +82,8 @@ public class NetworkHelper : NetworkBehaviour
 
     [ClientRpc]
 	void RpcSetObject(NetworkInstanceId id, string itemName)
-	{		
-		GameObject obj = ClientScene.FindLocalObject(id) as GameObject;
+	{
+        GameObject obj = ClientScene.FindLocalObject(id) as GameObject;
 		ItemFactory.Instance.OnLocalObjectCreated(obj, itemName);
 	}
 }
