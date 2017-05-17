@@ -46,6 +46,7 @@ public class Character : MonoBehaviour {
 		inventory = GetComponent<Inventory>();
 
         inventory.AddItem("SmallLamp", 12);
+        inventory.AddItem("Table", 2);
     }
 
     public void SetSprite(Sprite s)
@@ -102,6 +103,12 @@ public class Character : MonoBehaviour {
         {
             MapObject mo = hit.collider.GetComponent<MapObject>();
             string item = mo.Data.Name;
+
+            if(item == "Table")
+            {
+                GameUIManager.Instance.CraftingPanel.Show();
+                return;
+            }
 
 			if(mo.Data.Type == ItemData.eItemType.MATERIAL)
 			{

@@ -24,4 +24,9 @@ public class LightAttribute : ItemAttribute
 		GameObject light = GameObject.Instantiate(prefab, g.transform) as GameObject;
 		light.transform.localPosition = Vector3.zero;
 	}
+
+    public override string GetName()
+    {
+        return "Light Attribute";
+    }
 }

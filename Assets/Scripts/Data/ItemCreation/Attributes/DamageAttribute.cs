@@ -13,4 +13,9 @@ public class DamageAttribute : ItemAttribute
         damage = EditorGUILayout.FloatField("Damage", damage);
     }
 #endif
+
+    public override string GetName()
+    {
+        return "Damage Attribute";
+    }
 }

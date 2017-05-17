@@ -28,4 +28,20 @@ public class ItemData : ScriptableObject {
 
 		return ret;
 	}
+
+    public ItemAttribute GetAttribute<T>()
+    {
+        foreach(ItemAttribute i in attributes)
+        {
+            if(i.GetType() == typeof(T))
+            {
+                Debug.Log("Returning Type " + typeof(T).ToString());
+                return i;
+            }
+        }
+
+        Debug.Log("Returning Bullocks");
+
+        return null;
+    }
 }

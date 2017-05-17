@@ -29,17 +29,31 @@ public class ItemEditor : Editor
 		item.Sprite = EditorGUILayout.ObjectField("Sprite", item.Sprite, typeof(Sprite)) as Sprite;
 
 		EditorGUILayout.LabelField("Attributes", EditorStyles.boldLabel);
-
-		Debug.Log(item.attributes);
-
+        
         // Draw attributes with a delete button below each one:
         int indexToDelete = -1;
+
+        bool AttributeDirty = false;
+
         for (int i = 0; i < item.attributes.Count; i++)
         {
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+            EditorGUILayout.LabelField(item.attributes[i].GetName(), EditorStyles.boldLabel); 
 			if (item.attributes[i] != null) item.attributes[i].DoLayout();
             if (GUILayout.Button("Delete")) indexToDelete = i;
             EditorGUILayout.EndVertical();
+
+            if (item.attributes[i].bIsDirty)
+            {
+                AttributeDirty = true;
+
+                EditorUtility.SetDirty(item);
+                EditorUtility.SetDirty(item.attributes[i]);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+
+                Repaint();
+            }
         }
         if (indexToDelete > -1) item.attributes.RemoveAt(indexToDelete);
 
@@ -57,9 +71,9 @@ public class ItemEditor : Editor
             AssetDatabase.Refresh();
             item.attributes.Add(newAttribute);
         }
-        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.EndHorizontal();        
 
-        if (GUI.changed) EditorUtility.SetDirty(item);
+        if (GUI.changed || AttributeDirty) EditorUtility.SetDirty(item);        
     }
 
 }

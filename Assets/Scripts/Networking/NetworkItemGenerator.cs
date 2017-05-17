@@ -30,19 +30,20 @@ public class NetworkItemGenerator : MonoBehaviour
 
         foreach(Apartment a in ApartmentGenerator.Instance.Apartments)
         {
-            Room r = a.Rooms[0];
+            foreach (Room r in a.Rooms)
+            {
+                rndX = Random.Range(0, r.width);
+                rndY = Random.Range(0, r.height);
 
-            rndX = Random.Range(0, r.width);
-            rndY = Random.Range(0, r.height);
+                int[] pos = r.GetProperCoords(rndX, rndY);
 
-            int[] pos = r.GetProperCoords(rndX, rndY);
+                pos[0] += a.PosX;
+                pos[1] += a.PosY;
 
-            pos[0] += a.PosX;
-            pos[1] += a.PosY;
+                Vector3 position = GameMapData.Instance.GetNodeFromXY(pos[0], pos[1]).Position;
 
-            Vector3 position = GameMapData.Instance.GetNodeFromXY(pos[0], pos[1]).Position;
-
-            NetworkHelper.Instance.SpawnObject(position, "Scrap");
+                NetworkHelper.Instance.SpawnObject(position, "Scrap");
+            }
         }
     }
 

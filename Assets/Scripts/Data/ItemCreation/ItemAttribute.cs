@@ -6,9 +6,15 @@ using UnityEditor;
 public class ItemAttribute : ScriptableObject
 {
 
+    public virtual string GetName()
+    {
+       return "None";
+    }
+
 #if UNITY_EDITOR
     public virtual void DoLayout() { }
 #endif
 
+    public bool bIsDirty = false;
 	public virtual void OnSpawned(GameObject g) {}
 }
