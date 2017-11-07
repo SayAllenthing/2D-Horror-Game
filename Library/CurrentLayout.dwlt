@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 492}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -43,7 +43,7 @@ MonoBehaviour:
     y: 0
     width: 2560
     height: 1357
-  m_MinSize: {x: 950, y: 492}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 442}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 7457
+  controlID: 141
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 7437
+  controlID: 45
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -154,8 +154,8 @@ MonoBehaviour:
     y: 0
     width: 1072
     height: 650
-  m_MinSize: {x: 202, y: 224}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -207,8 +207,8 @@ MonoBehaviour:
     y: 0
     width: 418
     height: 1307
-  m_MinSize: {x: 204, y: 224}
-  m_MaxSize: {x: 4004, y: 4024}
+  m_MinSize: {x: 204, y: 221}
+  m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -257,8 +257,8 @@ MonoBehaviour:
     y: 0
     width: 558
     height: 1307
-  m_MinSize: {x: 277, y: 74}
-  m_MaxSize: {x: 4002, y: 4024}
+  m_MinSize: {x: 277, y: 71}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -368,14 +368,14 @@ MonoBehaviour:
     width: 1070
     height: 629
   m_SceneLighting: 1
-  lastFramingTime: 882.5835884924376
+  lastFramingTime: 47.391860084965494
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 402, y: 544, z: 0}
+    m_Target: {x: 7.495154, y: 5.3648195, z: 0}
     speed: 2
-    m_Value: {x: 402, y: 544, z: 0}
+    m_Value: {x: 7.495154, y: 5.3648195, z: 0}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -402,9 +402,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 233.34525
+    m_Target: 20.814203
     speed: 2
-    m_Value: 233.34525
+    m_Value: 20.814203
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -545,7 +545,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 4088fcff748cfcffea61fdff34faffffe2fbffff000000008629000006630000
+    m_ExpandedIDs: e2fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -605,19 +605,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Resources/Items
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Resources/Items
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Allen The Folder\2D-Horror-Game
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ba260000
-    m_LastClickedID: 9914
-    m_ExpandedIDs: 0000000084250000ae250000ce250000342600003826000044260000642600006e2600008426000098260000ba2600006e2900007029000000ca9a3bffffff7f
+    m_SelectedIDs: 08260000
+    m_LastClickedID: 9736
+    m_ExpandedIDs: 0000000094250000be250000de250000442600004826000054260000742600007e26000094260000a8260000ca2600007c2900007e29000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -645,7 +645,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000084250000ae250000ce250000342600003826000044260000642600006e2600008426000098260000ba2600006e2900007029000000ca9a3bffffff7f
+    m_ExpandedIDs: 0000000094250000be250000de250000442600004826000054260000742600007e26000094260000a8260000ca2600007c2900007e290000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -672,7 +672,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: ee1b0000701b00002ed6ffffb61c00004a24000002230000d42000005a05000000270000382700003a270000442700005c050000120600006e050000681c0000aaaafcff8af70100060a00007e060000a8260000e00400007e230000640700003c0600003a060000fe290000922e0000521d00001c2f00007c28000066090000380a00002a0d0000be390000780f0000c40d0000d0120000da12000070130000ce0d00003a390000ca2e00000e3c00004c2e0000063c00008e06000082060000f43b0000c20600006a0e0000f83f00001040000004400000c8060000942f220032cffbff820e0000b60e0000121200002e0700006c431b00a42f2200b23e22006c120000f20e0000cc0600003007000070080000e80b0000820c00000a140000c20e0000e60b000094310000b6130000be0e00006c1c0000ec040000f2040000f40400009ef0feff200500000c0500001805000002050000aceeffff700500009853ffff2e22000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
